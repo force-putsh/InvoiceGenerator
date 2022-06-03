@@ -17,6 +17,10 @@
 </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\InvoiceApi\InvoiceApi.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Compile Update="Model1.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>

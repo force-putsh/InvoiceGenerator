@@ -21,17 +21,14 @@ namespace InvoiceApi.Models
         public virtual DbSet<Employee> Employees { get; set; } = null!;
         public virtual DbSet<Order> Orders { get; set; } = null!;
         public virtual DbSet<OrderDetail> OrderDetails { get; set; } = null!;
-        public virtual DbSet<OrderDetailsExtended> OrderDetailsExtendeds { get; set; } = null!;
         public virtual DbSet<Product> Products { get; set; } = null!;
-        public virtual DbSet<ProductsByCategory> ProductsByCategories { get; set; } = null!;
-        public virtual DbSet<SalesByCategory> SalesByCategories { get; set; } = null!;
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             if (!optionsBuilder.IsConfigured)
             {
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
-                optionsBuilder.UseSqlServer("Server=.;Database=InnovationDB;Trusted_Connection=True;");
+                optionsBuilder.UseSqlServer("Server=.;Database=InnovationDB;Trusted_Connection=True; ");
             }
         }
 
@@ -39,15 +36,11 @@ namespace InvoiceApi.Models
         {
             modelBuilder.Entity<Category>(entity =>
             {
-                entity.Property(e => e.CategoryId)
-                    .ValueGeneratedNever()
-                    .HasColumnName("CategoryID");
+                entity.Property(e => e.CategoryId).HasColumnName("CategoryID");
 
                 entity.Property(e => e.CategoryName).HasMaxLength(15);
 
                 entity.Property(e => e.Description).HasColumnType("ntext");
-
-                entity.Property(e => e.Picture).HasColumnType("image");
             });
 
             modelBuilder.Entity<Customer>(entity =>
@@ -80,15 +73,11 @@ namespace InvoiceApi.Models
 
             modelBuilder.Entity<Employee>(entity =>
             {
-                entity.Property(e => e.EmployeeId)
-                    .ValueGeneratedNever()
-                    .HasColumnName("EmployeeID");
+                entity.Property(e => e.EmployeeId).HasColumnName("EmployeeID");
 
                 entity.Property(e => e.Address).HasMaxLength(60);
 
                 entity.Property(e => e.BirthDate).HasColumnType("datetime");
-
-                entity.Property(e => e.City).HasMaxLength(15);
 
                 entity.Property(e => e.Country).HasMaxLength(15);
 
@@ -100,13 +89,7 @@ namespace InvoiceApi.Models
 
                 entity.Property(e => e.LastName).HasMaxLength(20);
 
-                entity.Property(e => e.Password).HasMaxLength(500);
-
-                entity.Property(e => e.Photo).HasColumnType("image");
-
-                entity.Property(e => e.PostalCode).HasMaxLength(10);
-
-                entity.Property(e => e.Region).HasMaxLength(15);
+                entity.Property(e => e.PhotoPath).HasMaxLength(255);
 
                 entity.Property(e => e.Title).HasMaxLength(30);
 
@@ -115,9 +98,7 @@ namespace InvoiceApi.Models
 
             modelBuilder.Entity<Order>(entity =>
             {
-                entity.Property(e => e.OrderId)
-                    .ValueGeneratedNever()
-                    .HasColumnName("OrderID");
+                entity.Property(e => e.OrderId).HasColumnName("OrderID");
 
                 entity.Property(e => e.CustomerId)
                     .HasMaxLength(5)
@@ -152,8 +133,6 @@ namespace InvoiceApi.Models
 
                 entity.Property(e => e.ProductId).HasColumnName("ProductID");
 
-                entity.Property(e => e.Quantity).HasDefaultValueSql("((1))");
-
                 entity.Property(e => e.UnitPrice).HasColumnType("money");
 
                 entity.HasOne(d => d.Order)
@@ -169,28 +148,9 @@ namespace InvoiceApi.Models
                     .HasConstraintName("FK_Order_Details_Products");
             });
 
-            modelBuilder.Entity<OrderDetailsExtended>(entity =>
-            {
-                entity.HasNoKey();
-
-                entity.ToView("Order Details Extended");
-
-                entity.Property(e => e.ExtendedPrice).HasColumnType("money");
-
-                entity.Property(e => e.OrderId).HasColumnName("OrderID");
-
-                entity.Property(e => e.ProductId).HasColumnName("ProductID");
-
-                entity.Property(e => e.ProductName).HasMaxLength(40);
-
-                entity.Property(e => e.UnitPrice).HasColumnType("money");
-            });
-
             modelBuilder.Entity<Product>(entity =>
             {
-                entity.Property(e => e.ProductId)
-                    .ValueGeneratedNever()
-                    .HasColumnName("ProductID");
+                entity.Property(e => e.ProductId).HasColumnName("ProductID");
 
                 entity.Property(e => e.CategoryId).HasColumnName("CategoryID");
 
@@ -204,34 +164,6 @@ namespace InvoiceApi.Models
                     .WithMany(p => p.Products)
                     .HasForeignKey(d => d.CategoryId)
                     .HasConstraintName("FK_Products_Categories");
-            });
-
-            modelBuilder.Entity<ProductsByCategory>(entity =>
-            {
-                entity.HasNoKey();
-
-                entity.ToView("Products by Category");
-
-                entity.Property(e => e.CategoryName).HasMaxLength(15);
-
-                entity.Property(e => e.ProductName).HasMaxLength(40);
-
-                entity.Property(e => e.QuantityPerUnit).HasMaxLength(20);
-            });
-
-            modelBuilder.Entity<SalesByCategory>(entity =>
-            {
-                entity.HasNoKey();
-
-                entity.ToView("Sales by Category");
-
-                entity.Property(e => e.CategoryId).HasColumnName("CategoryID");
-
-                entity.Property(e => e.CategoryName).HasMaxLength(15);
-
-                entity.Property(e => e.ProductName).HasMaxLength(40);
-
-                entity.Property(e => e.ProductSales).HasColumnType("money");
             });
 
             OnModelCreatingPartial(modelBuilder);

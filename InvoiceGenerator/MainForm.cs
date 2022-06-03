@@ -1,3 +1,5 @@
+using InvoiceGenerator.UserForms;
+
 namespace InvoiceGenerator
 {
     public partial class MainForm : Form
@@ -6,7 +8,7 @@ namespace InvoiceGenerator
         private Button currentButton;
         private Random rand;
         private int tempIndex;
-        private Form aciveForm;
+        private UserControl aciveForm;
         
         //constuctor
         public MainForm()
@@ -38,7 +40,7 @@ namespace InvoiceGenerator
             return ColorTranslator.FromHtml(colorName);
         }
         
-        private void ActivateButton (object btnSender)
+        private void ActivateButton (object btnSender,Label lb)
         {
             if(btnSender !=null)
             {
@@ -50,6 +52,7 @@ namespace InvoiceGenerator
                     currentButton.BackColor = color;
                     currentButton.ForeColor = Color.White;
                     currentButton.Font = new Font("Segoe UI", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+                    lb.Text = currentButton.Text.ToUpper();
                 }
             }
         }
@@ -67,41 +70,34 @@ namespace InvoiceGenerator
             }
         }
 
-        private void OpenChildFrom(Form childForm,object btnSender)
-        {
-            if (aciveForm != null)
-            {
-                aciveForm.Close();
-            }
-            ActivateButton(btnSender);
-            aciveForm = childForm;
-            childForm.TopLevel = false;
-            childForm.FormBorderStyle = FormBorderStyle.None;
-            childForm.Dock = DockStyle.Fill;
-            this.panelContaint.Tag=childForm;
-            childForm.BringToFront();
-            childForm.Show();
-            lbTiltle.Text = childForm.Text;
-        }
-
         private void btnInvoice_Click(object sender, EventArgs e)
         {
-            ActivateButton(sender);
+            ActivateButton(sender, lbTiltle);
+            aciveForm = new Invoice(panelContaint);
+            aciveForm.Dock = DockStyle.Fill;
+            panelContaint.Controls.Clear();
+            panelContaint.Controls.Add(aciveForm);
+            aciveForm.Show();
         }
 
         private void btnCustomer_Click(object sender, EventArgs e)
         {
-            ActivateButton(sender);
+            ActivateButton(sender, lbTiltle);
+            aciveForm = new CustomerUF();
+            aciveForm.Dock = DockStyle.Fill;
+            panelContaint.Controls.Clear();
+            panelContaint.Controls.Add(aciveForm);
+            aciveForm.Show();
         }
 
         private void btnProducts_Click(object sender, EventArgs e)
         {
-            ActivateButton(sender);
+            ActivateButton(sender, lbTiltle);
         }
 
         private void btnSetting_Click(object sender, EventArgs e)
         {
-            ActivateButton(sender);
+            ActivateButton(sender, lbTiltle);
         }
     }
 }

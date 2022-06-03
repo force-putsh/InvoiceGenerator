@@ -127,6 +127,12 @@
   <data name="job_32px" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\job_32px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="search_64px" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\search_64px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="HILogo1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\HILogo1.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="home_32px" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\home_32px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -136,22 +142,19 @@
   <data name="settings_32px" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\settings_32px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Close_48px" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Close_48px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="home_100px" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\home_100px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="HILogo" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\HILogo.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="HILogo1" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\HILogo1.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="Close_48px" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Close_48px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="business_building_32px" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\business_building_32px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="search_64px" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\search_64px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="HILogo2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\HILogo2.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>
