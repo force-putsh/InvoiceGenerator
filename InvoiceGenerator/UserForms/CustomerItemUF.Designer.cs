@@ -1,4 +1,6 @@
-﻿namespace InvoiceGenerator.UserForms
+﻿using System.ComponentModel;
+
+namespace InvoiceGenerator.UserForms
 {
     partial class CustomerItemUF
     {
@@ -48,6 +50,7 @@
             this.lbCompagnyName = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.lbCodePostal = new System.Windows.Forms.Label();
+            this.backgroundWorker = new System.ComponentModel.BackgroundWorker();
             this.SuspendLayout();
             // 
             // label1
@@ -240,6 +243,12 @@
             this.lbCodePostal.TabIndex = 13;
             this.lbCodePostal.Text = "Code Postal";
             // 
+            // backgroundWorker
+            // 
+            this.backgroundWorker.WorkerReportsProgress = true;
+            this.backgroundWorker.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorker_DoWork);
+            this.backgroundWorker.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.backgroundWorker_RunWorkerCompleted);
+            // 
             // CustomerItemUF
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 19F);
@@ -268,7 +277,7 @@
             this.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "CustomerItemUF";
-            this.Size = new System.Drawing.Size(393, 380);
+            this.Size = new System.Drawing.Size(403, 380);
             this.Load += new System.EventHandler(this.CustomerItemUF_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -277,6 +286,7 @@
 
         #endregion
 
+        [Description("The name of the customer")]
         private Label label1;
         private Label label2;
         private Label label4;
@@ -297,5 +307,6 @@
         private Label lbCompagnyName;
         private Label label3;
         private Label lbCodePostal;
+        private System.ComponentModel.BackgroundWorker backgroundWorker;
     }
 }

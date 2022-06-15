@@ -29,14 +29,13 @@
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
-            this.button1 = new System.Windows.Forms.Button();
+            this.btnBack = new System.Windows.Forms.Button();
+            this.btnPrint = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
             this.dtgvOD = new System.Windows.Forms.DataGridView();
-            this.OrderID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ProductID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ProductName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.UnitPrice = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Quantity = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.button2 = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dtgvOD)).BeginInit();
@@ -44,23 +43,33 @@
             // 
             // panel1
             // 
-            this.panel1.Controls.Add(this.button1);
+            this.panel1.Controls.Add(this.btnBack);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1447, 72);
             this.panel1.TabIndex = 0;
             // 
-            // button1
+            // btnBack
             // 
-            this.button1.Dock = System.Windows.Forms.DockStyle.Left;
-            this.button1.Location = new System.Drawing.Point(0, 0);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 72);
-            this.button1.TabIndex = 0;
-            this.button1.Text = "Back";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.btnBack.Dock = System.Windows.Forms.DockStyle.Left;
+            this.btnBack.Location = new System.Drawing.Point(0, 0);
+            this.btnBack.Name = "btnBack";
+            this.btnBack.Size = new System.Drawing.Size(75, 72);
+            this.btnBack.TabIndex = 0;
+            this.btnBack.Text = "Back";
+            this.btnBack.UseVisualStyleBackColor = true;
+            this.btnBack.Click += new System.EventHandler(this.btnBack_Click);
+            // 
+            // btnPrint
+            // 
+            this.btnPrint.Location = new System.Drawing.Point(874, 208);
+            this.btnPrint.Name = "btnPrint";
+            this.btnPrint.Size = new System.Drawing.Size(246, 75);
+            this.btnPrint.TabIndex = 2;
+            this.btnPrint.Text = "Imprimer";
+            this.btnPrint.UseVisualStyleBackColor = true;
+            this.btnPrint.Click += new System.EventHandler(this.btnPrint_Click);
             // 
             // panel2
             // 
@@ -80,8 +89,7 @@
             this.dtgvOD.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dtgvOD.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dtgvOD.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.OrderID,
-            this.ProductID,
+            this.ProductName,
             this.UnitPrice,
             this.Quantity});
             this.dtgvOD.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -92,17 +100,11 @@
             this.dtgvOD.Size = new System.Drawing.Size(651, 782);
             this.dtgvOD.TabIndex = 0;
             // 
-            // OrderID
+            // ProductName
             // 
-            this.OrderID.HeaderText = "OrderID";
-            this.OrderID.Name = "OrderID";
-            this.OrderID.ReadOnly = true;
-            // 
-            // ProductID
-            // 
-            this.ProductID.HeaderText = "ProductID";
-            this.ProductID.Name = "ProductID";
-            this.ProductID.ReadOnly = true;
+            this.ProductName.HeaderText = "Product Name";
+            this.ProductName.Name = "ProductName";
+            this.ProductName.ReadOnly = true;
             // 
             // UnitPrice
             // 
@@ -116,22 +118,12 @@
             this.Quantity.Name = "Quantity";
             this.Quantity.ReadOnly = true;
             // 
-            // button2
-            // 
-            this.button2.Location = new System.Drawing.Point(942, 156);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(246, 75);
-            this.button2.TabIndex = 2;
-            this.button2.Text = "button2";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
-            // 
             // EditInvoice
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.button2);
             this.Controls.Add(this.panel2);
+            this.Controls.Add(this.btnPrint);
             this.Controls.Add(this.panel1);
             this.Name = "EditInvoice";
             this.Size = new System.Drawing.Size(1447, 854);
@@ -147,12 +139,11 @@
 
         private Panel panel1;
         private Panel panel2;
-        private Button button1;
+        private Button btnBack;
         private DataGridView dtgvOD;
-        private DataGridViewTextBoxColumn OrderID;
-        private DataGridViewTextBoxColumn ProductID;
+        private Button btnPrint;
+        private DataGridViewTextBoxColumn ProductName;
         private DataGridViewTextBoxColumn UnitPrice;
         private DataGridViewTextBoxColumn Quantity;
-        private Button button2;
     }
 }

@@ -9,6 +9,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Syncfusion.Grid.Windows" Version="20.1.0.52" />
     <PackageReference Include="Syncfusion.Shared.Base" Version="20.1.0.52" />
     <PackageReference Include="Syncfusion.Tools.Windows" Version="20.1.0.52" />
       <PackageReference Include="Syncfusion.Compression.Base" Version="20.1.0.52" />

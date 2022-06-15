@@ -29,6 +29,11 @@ namespace InvoiceApi.Controllers
             }
         }
 
+        //end point recupérer les Commandes de maniére sequentielle
+
+        //[HttpGet]
+        
+
         [HttpGet("{id}")]
         public async Task<IActionResult> GetOrderById(int id)
         {

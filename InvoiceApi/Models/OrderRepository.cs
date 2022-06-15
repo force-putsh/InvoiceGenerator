@@ -29,13 +29,18 @@ namespace InvoiceApi.Models
         //Retrieve all orders, Customers and order details from the database
         public async Task<IEnumerable<Order>> GetAllOrders()
         {
-            return await _Context.Orders.Include(o => o.Customer).Include(o => o.OrderDetails).ToListAsync();
+            return await _Context.Orders
+                .Include(o => o.Customer)
+                .Include(o => o.OrderDetails)
+                .ToListAsync();
         }
 
         //Retrieve orders and orders details
         public async Task<Order> GetOrder(int id)
         {
-            return await _Context.Orders.Include(o => o.OrderDetails).FirstOrDefaultAsync(o => o.OrderId == id);
+            return await _Context.Orders.Include(o => o.Customer)
+                .Include(o => o.OrderDetails)
+                .FirstOrDefaultAsync(o => o.OrderId == id);
         }
 
         public async Task<Order> UpdateOrder(Order order)

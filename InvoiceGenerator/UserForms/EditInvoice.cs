@@ -1,4 +1,5 @@
-﻿using InvoiceGenerator.Models;
+﻿using InvoiceApi.Models;
+using InvoiceGenerator.Models;
 using Syncfusion.Pdf;
 using Syncfusion.Pdf.Graphics;
 using Syncfusion.Pdf.Grid;
@@ -6,6 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -16,17 +18,25 @@ namespace InvoiceGenerator.UserForms
 {
     public partial class EditInvoice : UserControl
     {
-        int invoiceId;
-        OrderModel orderModel;
-        Invoice _parent;
-        Panel _panel;
-        public EditInvoice(int invoiceId, Invoice parent,Panel panel)
+        private int invoiceId;
+        private OrderModel orderModel;
+        private Invoice _parent;
+        private Panel _panel;
+        private string _customerID;
+        private Customer customer;
+        private CustomerModel customerModel;
+        private double total_price;
+        public EditInvoice(int invoiceId, Invoice parent,Panel panel, string customerID,double total_price)
         {
             InitializeComponent();
             this.invoiceId = invoiceId;
             orderModel = new OrderModel();
             this._parent = parent;
             this._panel = panel;
+            this._customerID = customerID;
+            customerModel = new CustomerModel();
+            customer = customerModel.GetCustomer(customerID);
+            this.total_price = total_price;
         }
         public EditInvoice()
         {
@@ -36,33 +46,38 @@ namespace InvoiceGenerator.UserForms
         private void EditInvoice_Load(object sender, EventArgs e)
         {
             var invoiceDetails = orderModel.GetOrderLines(invoiceId);
-            var invoice = orderModel.GetOrder(invoiceId);
             if (dtgvOD.Rows.Count > 1)
             {
                 dtgvOD.Rows.Clear();
                 foreach (var item in invoiceDetails)
                 {
-                    dtgvOD.Rows.Add(item.OrderId, item.ProductId, item.UnitPrice.ToString("C"), item.Quantity);
+                    dtgvOD.Rows.Add(item.Product.ProductName, item.UnitPrice.ToString("C"), item.Quantity);
                 }
             }
             else
             {
                 foreach (var item in invoiceDetails)
                 {
-                    dtgvOD.Rows.Add(item.OrderId, item.ProductId, item.UnitPrice.ToString("C"), item.Quantity);
+                    dtgvOD.Rows.Add(item.Product.ProductName, item.UnitPrice.ToString("C"), item.Quantity);
                 }
             }
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void btnBack_Click(object sender, EventArgs e)
         {
             _panel.Controls.Clear();
             _panel.Controls.Add(_parent);
         }
-
-        private void button2_Click(object sender, EventArgs e)
+        
+        private void btnPrint_Click(object sender, EventArgs e)
         {
-            //Create new PDF document.
+            var data = orderModel.GetOrderLines(invoiceId);
+            Print_Invoice print_ = new Print_Invoice();
+            print_.CreatePDF(data, customer, total_price);
+
+
+
+            /*//Create new PDF document.
             PdfDocument document = new PdfDocument();
 
             //Add page settings.
@@ -89,7 +104,7 @@ namespace InvoiceGenerator.UserForms
             PdfFont headFont = new PdfStandardFont(PdfFontFamily.TimesRoman, 20);
 
             //create a text element for adding the invoice number
-            PdfTextElement heading = new PdfTextElement("INVOICE "+invoiceId, headFont);
+            PdfTextElement heading = new PdfTextElement("INVOICE N°:" + _customerID, headFont);
             heading.Brush = PdfBrushes.White;
 
             //Draw the heading in page
@@ -108,7 +123,7 @@ namespace InvoiceGenerator.UserForms
             PdfTextElement adress = new PdfTextElement("Address: " + "123, ABC Street, XYZ City, ABC Country", timesRoman);
             adress.Brush = new PdfSolidBrush(new PdfColor(126, 155, 203));
             result = adress.Draw(page, new PointF(10, result.Bounds.Bottom + 25));
-            PdfPen linePen = new PdfPen(new PdfColor(126, 155, 203),2);
+            PdfPen linePen = new PdfPen(new PdfColor(126, 155, 203), 2);
             PointF startPoint = new PointF(0, result.Bounds.Bottom + 3);
             PointF endPoint = new PointF(pdfGraphics.ClientSize.Width, result.Bounds.Bottom + 3);
             pdfGraphics.DrawLine(linePen, startPoint, endPoint);
@@ -119,12 +134,11 @@ namespace InvoiceGenerator.UserForms
 
 
             //Format data as currency
-            dataTable.Columns.Add("Order ID", typeof(string));
-            dataTable.Columns.Add("Product ID", typeof(string));
-            dataTable.Columns.Add("Prix Unitaire (/8365e) ", typeof(string));
+            dataTable.Columns.Add("Product Name", typeof(string));
+            dataTable.Columns.Add("Prix Unitaire en Euro ", typeof(string));
             dataTable.Columns.Add("Quantity", typeof(string));
             //add item in data
-            data.ForEach(x => dataTable.Rows.Add(x.OrderId, x.ProductId, x.UnitPrice.ToString("C"), x.Quantity));
+            data.ForEach(x => dataTable.Rows.Add( x.ProductId, x.UnitPrice.ToString("C"), x.Quantity));
 
             //creating pdf grid
             PdfGrid pdfGrid = new PdfGrid();
@@ -162,8 +176,8 @@ namespace InvoiceGenerator.UserForms
             layoutFormat.Layout = PdfLayoutType.Paginate;
 
             //Draw the grid in the page
-            PdfGridLayoutResult layoutResult = pdfGrid.Draw(page, new RectangleF(new PointF(0,result.Bounds.Bottom+40),new SizeF(pdfGraphics.ClientSize.Width,pdfGraphics.ClientSize.Height-100)), layoutFormat);
-            
+            PdfGridLayoutResult layoutResult = pdfGrid.Draw(page, new RectangleF(new PointF(0, result.Bounds.Bottom + 40), new SizeF(pdfGraphics.ClientSize.Width, pdfGraphics.ClientSize.Height - 100)), layoutFormat);
+
 
 
             //save pdf document
@@ -172,6 +186,7 @@ namespace InvoiceGenerator.UserForms
             MessageBox.Show("Invoice" + invoiceId + ".pdf");
             //close the document
             document.Close(true);
+            */
         }
     }
 }

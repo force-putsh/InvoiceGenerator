@@ -41,10 +41,10 @@ namespace InvoiceApi.Models
             return await _context.Customers.ToListAsync();
         }
 
-        //Recupere un client par son id
+        //Recupere un client par son id ainsi que la liste des commandes
         public async Task<Customer> GetCustomer(string id)
         {
-            return await _context.Customers.FindAsync(id);
+            return await _context.Customers.Include(c => c.Orders).FirstOrDefaultAsync(c => c.CustomerId == id);
         }
 
         //Mise a jour d'un client

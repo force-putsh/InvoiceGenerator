@@ -13,8 +13,9 @@ namespace InvoiceGenerator.Models
     public class OrderModel:Order
     {
         HttpClient httpClient = new HttpClient();
-        List<OrderDetail> orderDetails = new List<OrderDetail>();
+        IList<OrderDetail> orderDetails = new List<OrderDetail>();
         private decimal total = 0;
+
         public OrderModel()
         {
             httpClient.BaseAddress = new Uri("https://localhost:7199/api/");
@@ -44,44 +45,72 @@ namespace InvoiceGenerator.Models
         }
 
         //fonction pour formater la date de la commande
+        
+        /// <summary>
+        /// Format Date
+        /// </summary>
+        /// <param name="date"></param>
+        /// <returns></returns>
         public string DateFormatted(DateTime date)
         {
             return date.ToString("dd/MM/yyyy");
         }
 
 
-        //obtenir les lignes de commande d'une commande
-        public List<OrderDetail> GetOrderLines(int orderId)
+
+        /// <summary>
+        /// obtenir les lignes de commande d'une commande
+        /// </summary>
+        /// <param name="orderId"></param>
+        /// <returns></returns>
+        public IList<OrderDetail> GetOrderLines(int orderId)
         {
             var response = httpClient.GetStringAsync("OrderDetail/" + orderId).Result;
-            var orderLines = JsonConvert.DeserializeObject<List<OrderDetail>>(response);
+            var orderLines = JsonConvert.DeserializeObject<IList<OrderDetail>>(response);
             return orderLines;
         }
 
         //fonction pour obtenir le prix total de chaque commandes
+
+        /// <summary>
+        /// Get Invoice Total price
+        /// </summary>
+        /// <param name="orderId"></param>
+        /// <returns></returns>
         public string GetTotal(int orderId)
         {
             orderDetails = GetOrderLines(orderId);
             return TotalFormatted;
         }
 
-        
+        /// <summary>
+        /// obtenir les commandes d'un client
+        /// </summary>
+        /// <returns></returns>
         public List<Order> GetOrders()
         {
-            List<Order> orders = new List<Order>();
             string response = httpClient.GetStringAsync("Orders").Result;
-            orders = JsonConvert.DeserializeObject<List<Order>>(response);
+            var orders = JsonConvert.DeserializeObject<List<Order>>(response);
             return orders;
         }
 
-        public  Order GetOrder(int id)
+        /// <summary>
+        /// Get Invoices List
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public Order GetOrder(int id)
         {
-            Order order = new Order();
-            string response =  httpClient.GetStringAsync("Orders/" + id).Result;
-            order = JsonConvert.DeserializeObject<Order>(response);
+            var response = httpClient.GetStringAsync("Orders/" + id).Result;
+            var order = JsonConvert.DeserializeObject<Order>(response);
             return order;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="order"></param>
+        /// <returns></returns>
         public async Task<Order> AddOrder(Order order)
         {
             HttpResponseMessage response = await httpClient.PostAsJsonAsync("Orders", order);

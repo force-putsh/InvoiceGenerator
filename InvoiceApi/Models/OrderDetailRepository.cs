@@ -10,10 +10,14 @@ namespace InvoiceApi.Models
         {
             _appDbContext = appDbContext;
         }
-        
+
+        // Get all OrderDetails and product
         public async Task<IEnumerable<OrderDetail>> GetOrderDetailsByOrderId(int orderId)
         {
-            return await _appDbContext.OrderDetails.Where(o => o.OrderId == orderId).ToListAsync();
+            return await _appDbContext.OrderDetails
+                .Include(od => od.Product)
+                .Where(od => od.OrderId == orderId)
+                .ToListAsync();
         }
     }
 }

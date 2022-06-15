@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace InvoiceGenerator.Models
 {
-    internal class CustomerModel:Customer
+    public class CustomerModel: Customer
     {
         HttpClient httpClient = new HttpClient();
 
@@ -21,25 +21,54 @@ namespace InvoiceGenerator.Models
         {
             Customer customer = new Customer();
             var response = httpClient.GetStringAsync("customers/" + id).Result;
-            customer = JsonConvert.DeserializeObject<Customer>(response);
+            if (response != null)
+            {
+                customer = JsonConvert.DeserializeObject<Customer>(response);
+            }
             return customer;
         }
 
         public List<Customer> GetCustomers()
         {
-            List<Customer> customers = new List<Customer>();
             var response = httpClient.GetStringAsync("customers").Result;
-            customers = JsonConvert.DeserializeObject<List<Customer>>(response);
+            var customers = JsonConvert.DeserializeObject<List<Customer>>(response);
             return customers;
         }
 
         //filter by name
         public List<Customer> GetCustomers(string name)
         {
-            List<Customer> customers = new List<Customer>();
             var response = httpClient.GetStringAsync("customers/name=" + name).Result;
-            customers = JsonConvert.DeserializeObject<List<Customer>>(response);
+            var customers = JsonConvert.DeserializeObject<List<Customer>>(response);
             return customers;
         }
+
+        public Customer GetCustomer(int id)
+        {
+            Customer customer = new Customer();
+            var response = httpClient.GetStringAsync("customers/" + id).Result;
+            if (response!=null)
+            {
+                customer = JsonConvert.DeserializeObject<Customer>(response);
+            }
+            return customer;
+        }
+
+        public Customer AddCustomer(Customer customer)
+        {
+            var response = httpClient.PostAsJsonAsync("customers", customer).Result;
+            return response.Content.ReadAsAsync<Customer>().Result;
+        }
+
+        public Customer UpdateCustomer(Customer customer)
+        {
+            var response = httpClient.PutAsJsonAsync("customers/" + customer.CustomerId, customer).Result;
+            return response.Content.ReadAsAsync<Customer>().Result;
+        }
+
+        public void DeleteCustomer(int id)
+        {
+            var response = httpClient.DeleteAsync("customers/" + id).Result;
+        }      
     }
 }
