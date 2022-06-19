@@ -16,7 +16,7 @@ using System.Windows.Forms;
 
 namespace InvoiceGenerator.UserForms
 {
-    public partial class EditInvoice : UserControl
+    public partial class EditFacture : UserControl
     {
         private int invoiceId;
         private OrderModel orderModel;
@@ -25,7 +25,7 @@ namespace InvoiceGenerator.UserForms
         private Customer customer;
         private CustomerModel customerModel;
         private double total_price;
-        public EditInvoice(int invoiceId, Invoice parent,Panel panel, string customerID,double total_price)
+        public EditFacture(int invoiceId, Invoice parent,Panel panel, string customerID,double total_price)
         {
             InitializeComponent();
             this.invoiceId = invoiceId;
@@ -36,7 +36,7 @@ namespace InvoiceGenerator.UserForms
             customer = customerModel.GetCustomer(customerID);
             this.total_price = total_price;
         }
-        public EditInvoice()
+        public EditFacture()
         {
             InitializeComponent();
         }

@@ -16,7 +16,7 @@ namespace InvoiceApi.Controllers
         }
 
         //Get OrderDetail by OrderId
-        [HttpGet("{orderId}")]
+        [HttpGet("{orderId}", Name = "GetOrderDetailByOrderId")]
         public async Task<IActionResult> GetOrderDetailByOrderId(int orderId)
         {
             var orderDetail = await _orderDetailRepository.GetOrderDetailsByOrderId(orderId);
@@ -25,6 +25,23 @@ namespace InvoiceApi.Controllers
                 return NotFound();
             }
             return Ok(orderDetail);
+        }
+
+        //Post OrderDetail
+        [HttpPost]
+        public async Task<IActionResult> AddOrderDetail([FromBody] OrderDetail orderDetail)
+        {
+            try
+            {
+                
+                var response = await _orderDetailRepository.AddOrderDetail(orderDetail);
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, $"Erreur lors de l'ajout de la Commande {ex.Message}");
+                throw;
+            }
         }
 
 

@@ -16,33 +16,23 @@ namespace InvoiceApi.Models
         {
         }
 
-        public virtual DbSet<Category> Categories { get; set; } = null!;
         public virtual DbSet<Customer> Customers { get; set; } = null!;
         public virtual DbSet<Employee> Employees { get; set; } = null!;
+        public virtual DbSet<Facture> Factures { get; set; } = null!;
         public virtual DbSet<Order> Orders { get; set; } = null!;
         public virtual DbSet<OrderDetail> OrderDetails { get; set; } = null!;
-        public virtual DbSet<Product> Products { get; set; } = null!;
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             if (!optionsBuilder.IsConfigured)
             {
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
-                optionsBuilder.UseSqlServer("Server=.;Database=InnovationDB;Trusted_Connection=True; ");
+                optionsBuilder.UseSqlServer("Server=.;Database=InnovationDB;Trusted_Connection=True;");
             }
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Category>(entity =>
-            {
-                entity.Property(e => e.CategoryId).HasColumnName("CategoryID");
-
-                entity.Property(e => e.CategoryName).HasMaxLength(15);
-
-                entity.Property(e => e.Description).HasColumnType("ntext");
-            });
-
             modelBuilder.Entity<Customer>(entity =>
             {
                 entity.Property(e => e.CustomerId)
@@ -81,6 +71,8 @@ namespace InvoiceApi.Models
 
                 entity.Property(e => e.Country).HasMaxLength(15);
 
+                entity.Property(e => e.Email).HasMaxLength(15);
+
                 entity.Property(e => e.FirstName).HasMaxLength(10);
 
                 entity.Property(e => e.HireDate).HasColumnType("datetime");
@@ -89,11 +81,40 @@ namespace InvoiceApi.Models
 
                 entity.Property(e => e.LastName).HasMaxLength(20);
 
+                entity.Property(e => e.Password).HasMaxLength(15);
+
+                entity.Property(e => e.Photo).HasColumnType("image");
+
                 entity.Property(e => e.PhotoPath).HasMaxLength(255);
 
                 entity.Property(e => e.Title).HasMaxLength(30);
 
                 entity.Property(e => e.TitleOfCourtesy).HasMaxLength(25);
+            });
+
+            modelBuilder.Entity<Facture>(entity =>
+            {
+                entity.HasKey(e => new { e.FacturId, e.OrderId });
+
+                entity.ToTable("Facture");
+
+                entity.Property(e => e.FacturId)
+                    .ValueGeneratedOnAdd()
+                    .HasColumnName("FacturID");
+
+                entity.Property(e => e.OrderId).HasColumnName("OrderID");
+
+                entity.Property(e => e.Amout).HasColumnType("decimal(18, 0)");
+
+                entity.Property(e => e.DueDate).HasColumnType("date");
+
+                entity.Property(e => e.Intitule).HasMaxLength(250);
+
+                entity.HasOne(d => d.Order)
+                    .WithMany(p => p.Factures)
+                    .HasForeignKey(d => d.OrderId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_Facture_Orders");
             });
 
             modelBuilder.Entity<Order>(entity =>
@@ -124,14 +145,15 @@ namespace InvoiceApi.Models
 
             modelBuilder.Entity<OrderDetail>(entity =>
             {
-                entity.HasKey(e => new { e.OrderId, e.ProductId })
-                    .HasName("PK_Order_Details");
+                entity.HasKey(e => new { e.OrderId, e.Intitule });
 
                 entity.ToTable("Order Details");
 
                 entity.Property(e => e.OrderId).HasColumnName("OrderID");
 
-                entity.Property(e => e.ProductId).HasColumnName("ProductID");
+                entity.Property(e => e.Intitule)
+                    .HasMaxLength(500)
+                    .IsUnicode(false);
 
                 entity.Property(e => e.UnitPrice).HasColumnType("money");
 
@@ -140,30 +162,6 @@ namespace InvoiceApi.Models
                     .HasForeignKey(d => d.OrderId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_Order_Details_Orders");
-
-                entity.HasOne(d => d.Product)
-                    .WithMany(p => p.OrderDetails)
-                    .HasForeignKey(d => d.ProductId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_Order_Details_Products");
-            });
-
-            modelBuilder.Entity<Product>(entity =>
-            {
-                entity.Property(e => e.ProductId).HasColumnName("ProductID");
-
-                entity.Property(e => e.CategoryId).HasColumnName("CategoryID");
-
-                entity.Property(e => e.ProductName).HasMaxLength(40);
-
-                entity.Property(e => e.UnitPrice)
-                    .HasColumnType("money")
-                    .HasDefaultValueSql("((0))");
-
-                entity.HasOne(d => d.Category)
-                    .WithMany(p => p.Products)
-                    .HasForeignKey(d => d.CategoryId)
-                    .HasConstraintName("FK_Products_Categories");
             });
 
             OnModelCreatingPartial(modelBuilder);

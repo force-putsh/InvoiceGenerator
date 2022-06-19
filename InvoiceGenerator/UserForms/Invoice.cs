@@ -47,20 +47,16 @@ namespace InvoiceGenerator.UserForms
         {
             double Price = double.Parse(dtgvOrder.CurrentRow.Cells[4].Value.ToString().Substring(0, (dtgvOrder.CurrentRow.Cells[4].Value.ToString()).Length - 1));
             EditInvoice editInvoice = new EditInvoice(int.Parse(dtgvOrder.CurrentRow.Cells[0].Value.ToString()),this,_panel, dtgvOrder.CurrentRow.Cells[5].Value.ToString(),Price);
+            
             _panel.Controls.Clear();
             _panel.Controls.Add(editInvoice);
+            editInvoice.Dock = DockStyle.None;
             editInvoice.Show();
         }
 
         private void dtgvOrder_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             
-        }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-            
-
         }
 
         #region backgroundWorker
@@ -102,5 +98,11 @@ namespace InvoiceGenerator.UserForms
             progressBar.Update();
         }
         #endregion
+
+        private void btnNewOrder_Click(object sender, EventArgs e)
+        {
+            OrderForm orderForm = new OrderForm();
+            orderForm.ShowDialog();
+        }
     }
 }

@@ -20,7 +20,10 @@ namespace InvoiceApi.Models
         public string? Address { get; set; }
         public string? Country { get; set; }
         public string? HomePhone { get; set; }
+        public byte[]? Photo { get; set; }
         public string? PhotoPath { get; set; }
+        public string? Password { get; set; }
+        public string? Email { get; set; }
 
         public virtual ICollection<Order> Orders { get; set; }
     }

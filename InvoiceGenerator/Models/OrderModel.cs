@@ -14,7 +14,7 @@ namespace InvoiceGenerator.Models
     {
         HttpClient httpClient = new HttpClient();
         IList<OrderDetail> orderDetails = new List<OrderDetail>();
-        private decimal total = 0;
+        private double total = 0;
 
         public OrderModel()
         {
@@ -23,26 +23,18 @@ namespace InvoiceGenerator.Models
 
 
         //caluler le prix total de la commande
-        public decimal Total
+        public string Total
         {
             get
             {
                 foreach (var item in this.orderDetails)
                 {
-                    total += item.UnitPrice * item.Quantity;
+                    total += (double) item.UnitPrice * item.Quantity;
                 }
-                return total;
+                return total.ToString("C");
             }
         }
 
-        //formater le prix total de la commande
-        public string TotalFormatted
-        {
-            get
-            {
-                return Total.ToString("C");
-            }
-        }
 
         //fonction pour formater la date de la commande
         
@@ -79,8 +71,9 @@ namespace InvoiceGenerator.Models
         /// <returns></returns>
         public string GetTotal(int orderId)
         {
+            total = 0;
             orderDetails = GetOrderLines(orderId);
-            return TotalFormatted;
+            return Total;
         }
 
         /// <summary>

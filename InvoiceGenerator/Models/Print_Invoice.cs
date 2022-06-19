@@ -65,7 +65,7 @@ Tel: (+237)697-09-88-59/670-70-50-29");
             dataTable.Columns.Add("Product Name", typeof(string));
             dataTable.Columns.Add("Prix Unitaire en Euro ", typeof(string));
             dataTable.Columns.Add("Quantity", typeof(string));
-            dataSource.ToList<OrderDetail>().ForEach(x => dataTable.Rows.Add(x.Product.ProductName, x.UnitPrice.ToString("C"), x.Quantity));
+            dataSource.ToList<OrderDetail>().ForEach(x => dataTable.Rows.Add(x.Intitule, x.UnitPrice.ToString("C"), x.Quantity));
             //grid.DataSource = ConvertToDataTable(dataSource);
             grid.DataSource = dataTable;
             PdfGridCellStyle cellStyle = new PdfGridCellStyle();
@@ -139,8 +139,6 @@ Tel: (+237)697-09-88-59/670-70-50-29");
 
             document.Save($"Invoice{dataSource[0].OrderId.ToString()}.pdf");
             document.Close(true);
-            MessageBox.Show($"Invoice { dataSource[0].OrderId}.pdf save");
-
             if (MessageBox.Show("Do you want to view the PDF file?", "PDF File Created", MessageBoxButtons.YesNo, MessageBoxIcon.Information) == DialogResult.Yes)
             {
                 //Launching the PDF file using the default Application.

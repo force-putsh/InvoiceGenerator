@@ -7,6 +7,7 @@ namespace InvoiceApi.Models
     {
         public Order()
         {
+            Factures = new HashSet<Facture>();
             OrderDetails = new HashSet<OrderDetail>();
         }
 
@@ -18,6 +19,7 @@ namespace InvoiceApi.Models
 
         public virtual Customer? Customer { get; set; }
         public virtual Employee? Employee { get; set; }
+        public virtual ICollection<Facture> Factures { get; set; }
         public virtual ICollection<OrderDetail> OrderDetails { get; set; }
     }
 }
