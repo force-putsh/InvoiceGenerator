@@ -18,7 +18,7 @@ namespace InvoiceGenerator.Models
 
         public OrderModel()
         {
-            httpClient.BaseAddress = new Uri("https://localhost:7199/api/");
+            httpClient.BaseAddress = new Uri("https://localhost:44365/api/");
         }
 
 

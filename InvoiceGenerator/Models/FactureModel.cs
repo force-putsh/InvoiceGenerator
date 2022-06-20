@@ -14,7 +14,7 @@ namespace InvoiceGenerator.Models
 
         public FactureModel()
         {
-            httpClient.BaseAddress = new Uri("https://localhost:7199/api/");
+            httpClient.BaseAddress = new Uri("https://localhost:44365/api/");
         }
 
         //Get Factures by OrderId

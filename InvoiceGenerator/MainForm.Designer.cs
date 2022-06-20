@@ -97,7 +97,7 @@
             this.btnProducts.Padding = new System.Windows.Forms.Padding(13, 0, 0, 0);
             this.btnProducts.Size = new System.Drawing.Size(231, 67);
             this.btnProducts.TabIndex = 3;
-            this.btnProducts.Text = "    Products";
+            this.btnProducts.Text = "    Factures";
             this.btnProducts.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnProducts.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnProducts.UseVisualStyleBackColor = true;
@@ -117,7 +117,7 @@
             this.btnCustomer.Padding = new System.Windows.Forms.Padding(13, 0, 0, 0);
             this.btnCustomer.Size = new System.Drawing.Size(231, 67);
             this.btnCustomer.TabIndex = 2;
-            this.btnCustomer.Text = "    Customers";
+            this.btnCustomer.Text = "   Client";
             this.btnCustomer.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnCustomer.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnCustomer.UseVisualStyleBackColor = true;
@@ -137,7 +137,7 @@
             this.btnInvoice.Padding = new System.Windows.Forms.Padding(13, 0, 0, 0);
             this.btnInvoice.Size = new System.Drawing.Size(231, 67);
             this.btnInvoice.TabIndex = 1;
-            this.btnInvoice.Text = "    Invoices";
+            this.btnInvoice.Text = "   Commandes";
             this.btnInvoice.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnInvoice.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnInvoice.UseVisualStyleBackColor = true;
@@ -207,9 +207,9 @@
             this.lbTiltle.ForeColor = System.Drawing.Color.White;
             this.lbTiltle.Location = new System.Drawing.Point(667, 22);
             this.lbTiltle.Name = "lbTiltle";
-            this.lbTiltle.Size = new System.Drawing.Size(129, 26);
+            this.lbTiltle.Size = new System.Drawing.Size(174, 26);
             this.lbTiltle.TabIndex = 0;
-            this.lbTiltle.Text = "INVOICES";
+            this.lbTiltle.Text = "COMMANDES";
             // 
             // panelBtn
             // 

@@ -35,17 +35,12 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panel1 = new System.Windows.Forms.Panel();
             this.btnBack = new System.Windows.Forms.Button();
-            this.btnPrint = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
             this.dtgvOD = new System.Windows.Forms.DataGridView();
             this.ProductName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Price = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Quantity = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel3 = new System.Windows.Forms.Panel();
-            this.button2 = new System.Windows.Forms.Button();
-            this.lbTotalPrice = new System.Windows.Forms.Label();
-            this.label12 = new System.Windows.Forms.Label();
-            this.btnAdd = new System.Windows.Forms.Button();
             this.panel4 = new System.Windows.Forms.Panel();
             this.cbCompagnyName = new System.Windows.Forms.ComboBox();
             this.lbFax = new System.Windows.Forms.Label();
@@ -68,11 +63,21 @@
             this.lbContactName = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
+            this.btnPrint = new System.Windows.Forms.Button();
+            this.btnAdd = new System.Windows.Forms.Button();
+            this.label12 = new System.Windows.Forms.Label();
+            this.lbTotalPrice = new System.Windows.Forms.Label();
+            this.rdAccompte = new Syncfusion.Windows.Forms.Tools.RadioButtonAdv();
+            this.rdSolde = new Syncfusion.Windows.Forms.Tools.RadioButtonAdv();
+            this.panel5Footer = new System.Windows.Forms.Panel();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dtgvOD)).BeginInit();
             this.panel3.SuspendLayout();
             this.panel4.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.rdAccompte)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.rdSolde)).BeginInit();
+            this.panel5Footer.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
@@ -97,25 +102,14 @@
             this.btnBack.UseVisualStyleBackColor = true;
             this.btnBack.Click += new System.EventHandler(this.btnBack_Click);
             // 
-            // btnPrint
-            // 
-            this.btnPrint.Location = new System.Drawing.Point(355, 676);
-            this.btnPrint.Margin = new System.Windows.Forms.Padding(4);
-            this.btnPrint.Name = "btnPrint";
-            this.btnPrint.Size = new System.Drawing.Size(226, 91);
-            this.btnPrint.TabIndex = 2;
-            this.btnPrint.Text = " Imprimer";
-            this.btnPrint.UseVisualStyleBackColor = true;
-            this.btnPrint.Click += new System.EventHandler(this.btnPrint_Click);
-            // 
             // panel2
             // 
             this.panel2.Controls.Add(this.dtgvOD);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Left;
-            this.panel2.Location = new System.Drawing.Point(0, 56);
+            this.panel2.Location = new System.Drawing.Point(0, 0);
             this.panel2.Margin = new System.Windows.Forms.Padding(4);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(712, 888);
+            this.panel2.Size = new System.Drawing.Size(764, 568);
             this.panel2.TabIndex = 1;
             // 
             // dtgvOD
@@ -131,7 +125,7 @@
             this.dtgvOD.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.BottomLeft;
             dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
             dataGridViewCellStyle1.Padding = new System.Windows.Forms.Padding(0, 0, 7, 0);
             dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
@@ -146,7 +140,7 @@
             this.Quantity});
             dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             dataGridViewCellStyle5.ForeColor = System.Drawing.Color.Black;
             dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Info;
             dataGridViewCellStyle5.SelectionForeColor = System.Drawing.Color.Black;
@@ -163,7 +157,7 @@
             this.dtgvOD.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.dtgvOD.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dtgvOD.ShowEditingIcon = false;
-            this.dtgvOD.Size = new System.Drawing.Size(712, 888);
+            this.dtgvOD.Size = new System.Drawing.Size(764, 568);
             this.dtgvOD.TabIndex = 24;
             // 
             // ProductName
@@ -202,61 +196,15 @@
             // 
             // panel3
             // 
-            this.panel3.Controls.Add(this.button2);
-            this.panel3.Controls.Add(this.lbTotalPrice);
-            this.panel3.Controls.Add(this.label12);
-            this.panel3.Controls.Add(this.btnAdd);
-            this.panel3.Controls.Add(this.btnPrint);
+            this.panel3.Controls.Add(this.panel2);
             this.panel3.Controls.Add(this.panel4);
+            this.panel3.Controls.Add(this.panel5Footer);
             this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel3.Location = new System.Drawing.Point(712, 56);
+            this.panel3.Location = new System.Drawing.Point(0, 56);
             this.panel3.Margin = new System.Windows.Forms.Padding(4);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(896, 888);
+            this.panel3.Size = new System.Drawing.Size(1608, 888);
             this.panel3.TabIndex = 2;
-            // 
-            // button2
-            // 
-            this.button2.Location = new System.Drawing.Point(208, 577);
-            this.button2.Margin = new System.Windows.Forms.Padding(4);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(226, 91);
-            this.button2.TabIndex = 4;
-            this.button2.Text = "Delete Item";
-            this.button2.UseVisualStyleBackColor = true;
-            // 
-            // lbTotalPrice
-            // 
-            this.lbTotalPrice.AutoSize = true;
-            this.lbTotalPrice.Font = new System.Drawing.Font("Times New Roman", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.lbTotalPrice.Location = new System.Drawing.Point(442, 805);
-            this.lbTotalPrice.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lbTotalPrice.Name = "lbTotalPrice";
-            this.lbTotalPrice.Size = new System.Drawing.Size(31, 36);
-            this.lbTotalPrice.TabIndex = 22;
-            this.lbTotalPrice.Text = "0";
-            // 
-            // label12
-            // 
-            this.label12.AutoSize = true;
-            this.label12.Font = new System.Drawing.Font("Times New Roman", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.label12.Location = new System.Drawing.Point(66, 805);
-            this.label12.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(164, 36);
-            this.label12.TabIndex = 22;
-            this.label12.Text = "Total Price";
-            // 
-            // btnAdd
-            // 
-            this.btnAdd.Location = new System.Drawing.Point(464, 577);
-            this.btnAdd.Margin = new System.Windows.Forms.Padding(4);
-            this.btnAdd.Name = "btnAdd";
-            this.btnAdd.Size = new System.Drawing.Size(226, 91);
-            this.btnAdd.TabIndex = 3;
-            this.btnAdd.Text = "Add Bill";
-            this.btnAdd.UseVisualStyleBackColor = true;
-            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
             // 
             // panel4
             // 
@@ -281,11 +229,11 @@
             this.panel4.Controls.Add(this.lbContactName);
             this.panel4.Controls.Add(this.label9);
             this.panel4.Controls.Add(this.label8);
-            this.panel4.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel4.Location = new System.Drawing.Point(0, 0);
+            this.panel4.Dock = System.Windows.Forms.DockStyle.Right;
+            this.panel4.Location = new System.Drawing.Point(761, 0);
             this.panel4.Margin = new System.Windows.Forms.Padding(4);
             this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(896, 561);
+            this.panel4.Size = new System.Drawing.Size(847, 568);
             this.panel4.TabIndex = 0;
             // 
             // cbCompagnyName
@@ -537,12 +485,88 @@
             this.label8.TabIndex = 31;
             this.label8.Text = "Fax";
             // 
+            // btnPrint
+            // 
+            this.btnPrint.Location = new System.Drawing.Point(202, 215);
+            this.btnPrint.Margin = new System.Windows.Forms.Padding(4);
+            this.btnPrint.Name = "btnPrint";
+            this.btnPrint.Size = new System.Drawing.Size(226, 91);
+            this.btnPrint.TabIndex = 2;
+            this.btnPrint.Text = " Imprimer";
+            this.btnPrint.UseVisualStyleBackColor = true;
+            this.btnPrint.Click += new System.EventHandler(this.btnPrint_Click);
+            // 
+            // btnAdd
+            // 
+            this.btnAdd.Location = new System.Drawing.Point(446, 215);
+            this.btnAdd.Margin = new System.Windows.Forms.Padding(4);
+            this.btnAdd.Name = "btnAdd";
+            this.btnAdd.Size = new System.Drawing.Size(226, 91);
+            this.btnAdd.TabIndex = 3;
+            this.btnAdd.Text = "Add Bill";
+            this.btnAdd.UseVisualStyleBackColor = true;
+            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Font = new System.Drawing.Font("Times New Roman", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.label12.Location = new System.Drawing.Point(315, 12);
+            this.label12.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(196, 36);
+            this.label12.TabIndex = 22;
+            this.label12.Text = "Total à Payer";
+            // 
+            // lbTotalPrice
+            // 
+            this.lbTotalPrice.AutoSize = true;
+            this.lbTotalPrice.Font = new System.Drawing.Font("Times New Roman", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.lbTotalPrice.Location = new System.Drawing.Point(668, 12);
+            this.lbTotalPrice.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lbTotalPrice.Name = "lbTotalPrice";
+            this.lbTotalPrice.Size = new System.Drawing.Size(31, 36);
+            this.lbTotalPrice.TabIndex = 22;
+            this.lbTotalPrice.Text = "0";
+            // 
+            // rdAccompte
+            // 
+            this.rdAccompte.BeforeTouchSize = new System.Drawing.Size(150, 39);
+            this.rdAccompte.Location = new System.Drawing.Point(93, 32);
+            this.rdAccompte.MetroColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(89)))), ((int)(((byte)(91)))));
+            this.rdAccompte.Name = "rdAccompte";
+            this.rdAccompte.Size = new System.Drawing.Size(150, 39);
+            this.rdAccompte.TabIndex = 24;
+            this.rdAccompte.Text = "Payer l\'Accompte";
+            // 
+            // rdSolde
+            // 
+            this.rdSolde.Location = new System.Drawing.Point(93, 97);
+            this.rdSolde.MetroColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(89)))), ((int)(((byte)(91)))));
+            this.rdSolde.Name = "rdSolde";
+            this.rdSolde.Size = new System.Drawing.Size(150, 21);
+            this.rdSolde.TabIndex = 25;
+            this.rdSolde.Text = "Solder";
+            // 
+            // panel5Footer
+            // 
+            this.panel5Footer.Controls.Add(this.rdAccompte);
+            this.panel5Footer.Controls.Add(this.rdSolde);
+            this.panel5Footer.Controls.Add(this.btnPrint);
+            this.panel5Footer.Controls.Add(this.btnAdd);
+            this.panel5Footer.Controls.Add(this.lbTotalPrice);
+            this.panel5Footer.Controls.Add(this.label12);
+            this.panel5Footer.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panel5Footer.Location = new System.Drawing.Point(0, 568);
+            this.panel5Footer.Name = "panel5Footer";
+            this.panel5Footer.Size = new System.Drawing.Size(1608, 320);
+            this.panel5Footer.TabIndex = 26;
+            // 
             // EditFacture
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 19F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.panel3);
-            this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.Margin = new System.Windows.Forms.Padding(4);
@@ -553,9 +577,12 @@
             this.panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dtgvOD)).EndInit();
             this.panel3.ResumeLayout(false);
-            this.panel3.PerformLayout();
             this.panel4.ResumeLayout(false);
             this.panel4.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.rdAccompte)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.rdSolde)).EndInit();
+            this.panel5Footer.ResumeLayout(false);
+            this.panel5Footer.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -565,7 +592,6 @@
         private Panel panel1;
         private Panel panel2;
         private Button btnBack;
-        private Button btnPrint;
         private DataGridView dtgvOD;
         private DataGridViewTextBoxColumn ProductName;
         private DataGridViewTextBoxColumn Price;
@@ -592,9 +618,12 @@
         private Label lbContactName;
         private Label label9;
         private Label label8;
-        private Button button2;
-        private Button btnAdd;
         private ComboBox cbCompagnyName;
+        private Panel panel5Footer;
+        private Syncfusion.Windows.Forms.Tools.RadioButtonAdv rdAccompte;
+        private Syncfusion.Windows.Forms.Tools.RadioButtonAdv rdSolde;
+        private Button btnPrint;
+        private Button btnAdd;
         private Label lbTotalPrice;
         private Label label12;
     }

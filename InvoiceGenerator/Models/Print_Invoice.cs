@@ -65,7 +65,8 @@ Tel: (+237)697-09-88-59/670-70-50-29");
             dataTable.Columns.Add("Product Name", typeof(string));
             dataTable.Columns.Add("Prix Unitaire en Euro ", typeof(string));
             dataTable.Columns.Add("Quantity", typeof(string));
-            dataSource.ToList<OrderDetail>().ForEach(x => dataTable.Rows.Add(x.Intitule, x.UnitPrice.ToString("C"), x.Quantity));
+            dataTable.Columns.Add("Total", typeof(string));
+            dataSource.ToList<OrderDetail>().ForEach(x => dataTable.Rows.Add(x.Intitule, double.Parse(x.UnitPrice.ToString()), x.Quantity,double.Parse((x.UnitPrice * x.Quantity).ToString())));
             //grid.DataSource = ConvertToDataTable(dataSource);
             grid.DataSource = dataTable;
             PdfGridCellStyle cellStyle = new PdfGridCellStyle();
@@ -86,9 +87,10 @@ Tel: (+237)697-09-88-59/670-70-50-29");
                 else
                     header.Cells[i].StringFormat = new PdfStringFormat(PdfTextAlignment.Right, PdfVerticalAlignment.Middle);
             }
-            header.Cells[0].Value = "ITEM";
+            header.Cells[0].Value = "SERVICES";
             header.Cells[1].Value = "UNIT PRICE";
             header.Cells[2].Value = "QUANTITY";
+            header.Cells[3].Value = "TOTAL";
             header.ApplyStyle(headerStyle);
             grid.Columns[0].Width = 180;
             cellStyle.Borders.Bottom = new PdfPen(new PdfColor(34, 83, 142), 0.70f);
@@ -105,7 +107,7 @@ Tel: (+237)697-09-88-59/670-70-50-29");
                     else
                         cell.StringFormat = new PdfStringFormat(PdfTextAlignment.Right, PdfVerticalAlignment.Middle);
 
-                    if (i == 1)
+                    if (i == 1|| i==3)
                     {
                         if (cell.Value.ToString().Contains("$"))
                         {
@@ -131,15 +133,15 @@ Tel: (+237)697-09-88-59/670-70-50-29");
                 pos += grid.Columns[i].Width;
 
             PdfFont font = new PdfStandardFont(PdfFontFamily.TimesRoman, 12f, PdfFontStyle.Bold);
-            gridResult.Page.Graphics.DrawString("TOTAL DUE", font, new PdfSolidBrush(new PdfColor(34, 83, 142)), new RectangleF(new PointF(pos, gridResult.Bounds.Bottom + 10), new SizeF(grid.Columns[1].Width - pos, 20)), new PdfStringFormat(PdfTextAlignment.Right));
-            gridResult.Page.Graphics.DrawString("Thank you for your business!", new PdfStandardFont(PdfFontFamily.TimesRoman, 12), new PdfSolidBrush(new PdfColor(0, 0, 0)), new PointF(pos - 210, gridResult.Bounds.Bottom + 60));
+            gridResult.Page.Graphics.DrawString("TOTAL à PAYER", font, new PdfSolidBrush(new PdfColor(34, 83, 142)), new RectangleF(new PointF(pos, gridResult.Bounds.Bottom + 10), new SizeF(grid.Columns[1].Width - pos, 20)), new PdfStringFormat(PdfTextAlignment.Right));
+            gridResult.Page.Graphics.DrawString("Merci por la confiance. House Innovation vous souhaite bon courage!", new PdfStandardFont(PdfFontFamily.TimesRoman, 12), new PdfSolidBrush(new PdfColor(0, 0, 0)), new PointF(pos - 210, gridResult.Bounds.Bottom + 60));
             pos += grid.Columns[2].Width;
             gridResult.Page.Graphics.DrawString(totalDue.ToString("#,###.00", CultureInfo.CurrentCulture)+ "$", font, new PdfSolidBrush(new PdfColor(0, 0, 0)), new RectangleF(pos, gridResult.Bounds.Bottom + 10, grid.Columns[2].Width - pos, 20), new PdfStringFormat(PdfTextAlignment.Right));
-            //di
+            
 
             document.Save($"Invoice{dataSource[0].OrderId.ToString()}.pdf");
             document.Close(true);
-            if (MessageBox.Show("Do you want to view the PDF file?", "PDF File Created", MessageBoxButtons.YesNo, MessageBoxIcon.Information) == DialogResult.Yes)
+            if (MessageBox.Show("Voulez vous ouvrir le fichier?", "Devis Crée", MessageBoxButtons.YesNo, MessageBoxIcon.Information) == DialogResult.Yes)
             {
                 //Launching the PDF file using the default Application.
                 ProcessStartInfo psi = new ProcessStartInfo

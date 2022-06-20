@@ -12,7 +12,7 @@ namespace InvoiceGenerator.Models
         HttpClient httpClient = new HttpClient();
         public OrderDetailModel()
         {
-            httpClient.BaseAddress = new Uri("https://localhost:7199/api/");
+            httpClient.BaseAddress = new Uri("https://localhost:44365/api/");
         }
 
         public async Task<OrderDetail> AddOrderDetailAsync(OrderDetail orderDetail)
