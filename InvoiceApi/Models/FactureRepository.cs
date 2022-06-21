@@ -27,18 +27,5 @@ namespace InvoiceApi.Models
             await _context.SaveChangesAsync();
             return facture;
         }
-
-        public async Task<Facture> UpdateFacture(Facture facture)
-        {
-            _context.Factures.Update(facture);
-            await _context.SaveChangesAsync();
-            return facture;
-        }
-
-        public async Task DeleteFacture(int id)
-        {
-            _context.Factures.Remove(await _context.Factures.FindAsync(id));
-            await _context.SaveChangesAsync();
-        }
     }
 }

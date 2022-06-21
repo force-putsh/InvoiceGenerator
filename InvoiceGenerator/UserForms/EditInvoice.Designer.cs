@@ -34,6 +34,8 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.lbOrderID = new System.Windows.Forms.Label();
+            this.label13 = new System.Windows.Forms.Label();
             this.btnBack = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
             this.dtgvOD = new System.Windows.Forms.DataGridView();
@@ -41,8 +43,6 @@
             this.Price = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Quantity = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel3 = new System.Windows.Forms.Panel();
-            this.lbTotalPrice = new System.Windows.Forms.Label();
-            this.label12 = new System.Windows.Forms.Label();
             this.panel4 = new System.Windows.Forms.Panel();
             this.cbCompagnyName = new System.Windows.Forms.ComboBox();
             this.lbFax = new System.Windows.Forms.Label();
@@ -65,23 +65,34 @@
             this.lbContactName = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
+            this.panel5 = new System.Windows.Forms.Panel();
+            this.ckValide = new System.Windows.Forms.CheckBox();
+            this.pnlChoice = new System.Windows.Forms.Panel();
+            this.ckSolde = new System.Windows.Forms.CheckBox();
+            this.label14 = new System.Windows.Forms.Label();
+            this.ckAccompte = new System.Windows.Forms.CheckBox();
+            this.lbReste = new System.Windows.Forms.Label();
+            this.label15 = new System.Windows.Forms.Label();
+            this.lbPayer = new System.Windows.Forms.Label();
+            this.btnDeleteItem = new System.Windows.Forms.Button();
+            this.btnDelete = new System.Windows.Forms.Button();
             this.btnPrint = new System.Windows.Forms.Button();
             this.btnAdd = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
-            this.panel5 = new System.Windows.Forms.Panel();
-            this.label13 = new System.Windows.Forms.Label();
-            this.label14 = new System.Windows.Forms.Label();
+            this.lbTotalPrice = new System.Windows.Forms.Label();
+            this.label12 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dtgvOD)).BeginInit();
             this.panel3.SuspendLayout();
             this.panel4.SuspendLayout();
             this.panel5.SuspendLayout();
+            this.pnlChoice.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.lbOrderID);
+            this.panel1.Controls.Add(this.label13);
             this.panel1.Controls.Add(this.btnBack);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
@@ -90,16 +101,40 @@
             this.panel1.Size = new System.Drawing.Size(1608, 56);
             this.panel1.TabIndex = 0;
             // 
+            // lbOrderID
+            // 
+            this.lbOrderID.AutoSize = true;
+            this.lbOrderID.Font = new System.Drawing.Font("Times New Roman", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.lbOrderID.Location = new System.Drawing.Point(863, 5);
+            this.lbOrderID.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lbOrderID.Name = "lbOrderID";
+            this.lbOrderID.Size = new System.Drawing.Size(114, 36);
+            this.lbOrderID.TabIndex = 44;
+            this.lbOrderID.Text = "Service";
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Font = new System.Drawing.Font("Times New Roman", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.label13.Location = new System.Drawing.Point(421, 5);
+            this.label13.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(428, 36);
+            this.label13.TabIndex = 43;
+            this.label13.Text = "Factures de la Commande N°:";
+            // 
             // btnBack
             // 
+            this.btnBack.BackColor = System.Drawing.Color.Red;
             this.btnBack.Dock = System.Windows.Forms.DockStyle.Left;
+            this.btnBack.ForeColor = System.Drawing.Color.Black;
             this.btnBack.Location = new System.Drawing.Point(0, 0);
             this.btnBack.Margin = new System.Windows.Forms.Padding(4);
             this.btnBack.Name = "btnBack";
             this.btnBack.Size = new System.Drawing.Size(96, 56);
             this.btnBack.TabIndex = 0;
             this.btnBack.Text = "Back";
-            this.btnBack.UseVisualStyleBackColor = true;
+            this.btnBack.UseVisualStyleBackColor = false;
             this.btnBack.Click += new System.EventHandler(this.btnBack_Click);
             // 
             // panel2
@@ -205,28 +240,6 @@
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(1608, 888);
             this.panel3.TabIndex = 2;
-            // 
-            // lbTotalPrice
-            // 
-            this.lbTotalPrice.AutoSize = true;
-            this.lbTotalPrice.Font = new System.Drawing.Font("Times New Roman", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.lbTotalPrice.Location = new System.Drawing.Point(372, 46);
-            this.lbTotalPrice.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lbTotalPrice.Name = "lbTotalPrice";
-            this.lbTotalPrice.Size = new System.Drawing.Size(31, 36);
-            this.lbTotalPrice.TabIndex = 22;
-            this.lbTotalPrice.Text = "0";
-            // 
-            // label12
-            // 
-            this.label12.AutoSize = true;
-            this.label12.Font = new System.Drawing.Font("Times New Roman", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.label12.Location = new System.Drawing.Point(49, 46);
-            this.label12.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(164, 36);
-            this.label12.TabIndex = 22;
-            this.label12.Text = "Total Price";
             // 
             // panel4
             // 
@@ -507,54 +520,12 @@
             this.label8.TabIndex = 31;
             this.label8.Text = "Fax";
             // 
-            // btnPrint
-            // 
-            this.btnPrint.Location = new System.Drawing.Point(1140, 155);
-            this.btnPrint.Margin = new System.Windows.Forms.Padding(4);
-            this.btnPrint.Name = "btnPrint";
-            this.btnPrint.Size = new System.Drawing.Size(226, 91);
-            this.btnPrint.TabIndex = 2;
-            this.btnPrint.Text = " Imprimer";
-            this.btnPrint.UseVisualStyleBackColor = true;
-            this.btnPrint.Click += new System.EventHandler(this.btnPrint_Click);
-            // 
-            // btnAdd
-            // 
-            this.btnAdd.Location = new System.Drawing.Point(1140, 56);
-            this.btnAdd.Margin = new System.Windows.Forms.Padding(4);
-            this.btnAdd.Name = "btnAdd";
-            this.btnAdd.Size = new System.Drawing.Size(226, 91);
-            this.btnAdd.TabIndex = 3;
-            this.btnAdd.Text = "Add  Item";
-            this.btnAdd.UseVisualStyleBackColor = true;
-            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
-            // 
-            // button2
-            // 
-            this.button2.Location = new System.Drawing.Point(884, 56);
-            this.button2.Margin = new System.Windows.Forms.Padding(4);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(226, 91);
-            this.button2.TabIndex = 4;
-            this.button2.Text = "Delete Item";
-            this.button2.UseVisualStyleBackColor = true;
-            // 
-            // button3
-            // 
-            this.button3.Location = new System.Drawing.Point(884, 155);
-            this.button3.Margin = new System.Windows.Forms.Padding(4);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(226, 91);
-            this.button3.TabIndex = 5;
-            this.button3.Text = "Supprimer";
-            this.button3.UseVisualStyleBackColor = true;
-            // 
             // panel5
             // 
-            this.panel5.Controls.Add(this.label13);
-            this.panel5.Controls.Add(this.label14);
-            this.panel5.Controls.Add(this.button2);
-            this.panel5.Controls.Add(this.button3);
+            this.panel5.Controls.Add(this.ckValide);
+            this.panel5.Controls.Add(this.pnlChoice);
+            this.panel5.Controls.Add(this.btnDeleteItem);
+            this.panel5.Controls.Add(this.btnDelete);
             this.panel5.Controls.Add(this.btnPrint);
             this.panel5.Controls.Add(this.btnAdd);
             this.panel5.Controls.Add(this.lbTotalPrice);
@@ -565,27 +536,171 @@
             this.panel5.Size = new System.Drawing.Size(1608, 320);
             this.panel5.TabIndex = 23;
             // 
-            // label13
+            // ckValide
             // 
-            this.label13.AutoSize = true;
-            this.label13.Font = new System.Drawing.Font("Times New Roman", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.label13.Location = new System.Drawing.Point(372, 98);
-            this.label13.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(31, 36);
-            this.label13.TabIndex = 23;
-            this.label13.Text = "0";
+            this.ckValide.AutoSize = true;
+            this.ckValide.Location = new System.Drawing.Point(553, 53);
+            this.ckValide.Name = "ckValide";
+            this.ckValide.Size = new System.Drawing.Size(123, 23);
+            this.ckValide.TabIndex = 26;
+            this.ckValide.Text = " Valider le dévis";
+            this.ckValide.UseVisualStyleBackColor = true;
+            this.ckValide.CheckedChanged += new System.EventHandler(this.ckValide_CheckedChanged);
+            // 
+            // pnlChoice
+            // 
+            this.pnlChoice.Controls.Add(this.ckSolde);
+            this.pnlChoice.Controls.Add(this.label14);
+            this.pnlChoice.Controls.Add(this.ckAccompte);
+            this.pnlChoice.Controls.Add(this.lbReste);
+            this.pnlChoice.Controls.Add(this.label15);
+            this.pnlChoice.Controls.Add(this.lbPayer);
+            this.pnlChoice.Location = new System.Drawing.Point(49, 103);
+            this.pnlChoice.Name = "pnlChoice";
+            this.pnlChoice.Size = new System.Drawing.Size(663, 123);
+            this.pnlChoice.TabIndex = 25;
+            // 
+            // ckSolde
+            // 
+            this.ckSolde.AutoSize = true;
+            this.ckSolde.Location = new System.Drawing.Point(504, 83);
+            this.ckSolde.Name = "ckSolde";
+            this.ckSolde.Size = new System.Drawing.Size(72, 23);
+            this.ckSolde.TabIndex = 28;
+            this.ckSolde.Text = " Solder";
+            this.ckSolde.UseVisualStyleBackColor = true;
+            this.ckSolde.CheckedChanged += new System.EventHandler(this.ckSolde_CheckedChanged);
             // 
             // label14
             // 
             this.label14.AutoSize = true;
             this.label14.Font = new System.Drawing.Font("Times New Roman", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.label14.Location = new System.Drawing.Point(49, 98);
+            this.label14.Location = new System.Drawing.Point(1, 8);
             this.label14.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(164, 36);
+            this.label14.Size = new System.Drawing.Size(231, 36);
             this.label14.TabIndex = 24;
-            this.label14.Text = "Total Price";
+            this.label14.Text = " Montant Payer";
+            // 
+            // ckAccompte
+            // 
+            this.ckAccompte.AutoSize = true;
+            this.ckAccompte.Location = new System.Drawing.Point(504, 31);
+            this.ckAccompte.Name = "ckAccompte";
+            this.ckAccompte.Size = new System.Drawing.Size(132, 23);
+            this.ckAccompte.TabIndex = 27;
+            this.ckAccompte.Text = "Payer l\'accompte";
+            this.ckAccompte.UseVisualStyleBackColor = true;
+            this.ckAccompte.CheckedChanged += new System.EventHandler(this.ckAccompte_CheckedChanged);
+            // 
+            // lbReste
+            // 
+            this.lbReste.AutoSize = true;
+            this.lbReste.Font = new System.Drawing.Font("Times New Roman", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.lbReste.Location = new System.Drawing.Point(323, 65);
+            this.lbReste.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lbReste.Name = "lbReste";
+            this.lbReste.Size = new System.Drawing.Size(31, 36);
+            this.lbReste.TabIndex = 23;
+            this.lbReste.Text = "0";
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Font = new System.Drawing.Font("Times New Roman", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.label15.Location = new System.Drawing.Point(12, 65);
+            this.label15.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(89, 36);
+            this.label15.TabIndex = 24;
+            this.label15.Text = "Reste";
+            // 
+            // lbPayer
+            // 
+            this.lbPayer.AutoSize = true;
+            this.lbPayer.Font = new System.Drawing.Font("Times New Roman", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.lbPayer.Location = new System.Drawing.Point(323, 8);
+            this.lbPayer.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lbPayer.Name = "lbPayer";
+            this.lbPayer.Size = new System.Drawing.Size(31, 36);
+            this.lbPayer.TabIndex = 23;
+            this.lbPayer.Text = "0";
+            // 
+            // btnDeleteItem
+            // 
+            this.btnDeleteItem.BackColor = System.Drawing.Color.RoyalBlue;
+            this.btnDeleteItem.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.btnDeleteItem.ForeColor = System.Drawing.Color.White;
+            this.btnDeleteItem.Location = new System.Drawing.Point(884, 56);
+            this.btnDeleteItem.Margin = new System.Windows.Forms.Padding(4);
+            this.btnDeleteItem.Name = "btnDeleteItem";
+            this.btnDeleteItem.Size = new System.Drawing.Size(226, 91);
+            this.btnDeleteItem.TabIndex = 4;
+            this.btnDeleteItem.Text = "Delete Item";
+            this.btnDeleteItem.UseVisualStyleBackColor = false;
+            // 
+            // btnDelete
+            // 
+            this.btnDelete.BackColor = System.Drawing.Color.RoyalBlue;
+            this.btnDelete.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.btnDelete.ForeColor = System.Drawing.Color.White;
+            this.btnDelete.Location = new System.Drawing.Point(884, 155);
+            this.btnDelete.Margin = new System.Windows.Forms.Padding(4);
+            this.btnDelete.Name = "btnDelete";
+            this.btnDelete.Size = new System.Drawing.Size(226, 91);
+            this.btnDelete.TabIndex = 5;
+            this.btnDelete.Text = "Supprimer";
+            this.btnDelete.UseVisualStyleBackColor = false;
+            // 
+            // btnPrint
+            // 
+            this.btnPrint.BackColor = System.Drawing.Color.RoyalBlue;
+            this.btnPrint.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.btnPrint.ForeColor = System.Drawing.Color.White;
+            this.btnPrint.Location = new System.Drawing.Point(1140, 155);
+            this.btnPrint.Margin = new System.Windows.Forms.Padding(4);
+            this.btnPrint.Name = "btnPrint";
+            this.btnPrint.Size = new System.Drawing.Size(226, 91);
+            this.btnPrint.TabIndex = 2;
+            this.btnPrint.Text = " Imprimer";
+            this.btnPrint.UseVisualStyleBackColor = false;
+            this.btnPrint.Click += new System.EventHandler(this.btnPrint_Click);
+            // 
+            // btnAdd
+            // 
+            this.btnAdd.BackColor = System.Drawing.Color.RoyalBlue;
+            this.btnAdd.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.btnAdd.ForeColor = System.Drawing.Color.White;
+            this.btnAdd.Location = new System.Drawing.Point(1140, 56);
+            this.btnAdd.Margin = new System.Windows.Forms.Padding(4);
+            this.btnAdd.Name = "btnAdd";
+            this.btnAdd.Size = new System.Drawing.Size(226, 91);
+            this.btnAdd.TabIndex = 3;
+            this.btnAdd.Text = "Add  Item";
+            this.btnAdd.UseVisualStyleBackColor = false;
+            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
+            // 
+            // lbTotalPrice
+            // 
+            this.lbTotalPrice.AutoSize = true;
+            this.lbTotalPrice.Font = new System.Drawing.Font("Times New Roman", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.lbTotalPrice.Location = new System.Drawing.Point(372, 46);
+            this.lbTotalPrice.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lbTotalPrice.Name = "lbTotalPrice";
+            this.lbTotalPrice.Size = new System.Drawing.Size(31, 36);
+            this.lbTotalPrice.TabIndex = 22;
+            this.lbTotalPrice.Text = "0";
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Font = new System.Drawing.Font("Times New Roman", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.label12.Location = new System.Drawing.Point(49, 46);
+            this.label12.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(255, 36);
+            this.label12.TabIndex = 22;
+            this.label12.Text = " Montant à Payer";
             // 
             // EditInvoice
             // 
@@ -599,6 +714,7 @@
             this.Size = new System.Drawing.Size(1608, 944);
             this.Load += new System.EventHandler(this.EditInvoice_Load);
             this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             this.panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dtgvOD)).EndInit();
             this.panel3.ResumeLayout(false);
@@ -606,6 +722,8 @@
             this.panel4.PerformLayout();
             this.panel5.ResumeLayout(false);
             this.panel5.PerformLayout();
+            this.pnlChoice.ResumeLayout(false);
+            this.pnlChoice.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -645,11 +763,19 @@
         private Label lbTotalPrice;
         private Label label12;
         private Panel panel5;
-        private Label label13;
+        private Label lbPayer;
         private Label label14;
-        private Button button2;
-        private Button button3;
+        private Button btnDeleteItem;
+        private Button btnDelete;
         private Button btnPrint;
         private Button btnAdd;
+        private CheckBox ckValide;
+        private Panel pnlChoice;
+        private CheckBox ckSolde;
+        private CheckBox ckAccompte;
+        private Label lbReste;
+        private Label label15;
+        private Label lbOrderID;
+        private Label label13;
     }
 }

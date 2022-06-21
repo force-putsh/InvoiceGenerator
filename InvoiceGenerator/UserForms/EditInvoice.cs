@@ -25,6 +25,10 @@ namespace InvoiceGenerator.UserForms
         private Customer customer;
         private CustomerModel customerModel;
         private double total_price;
+        private double montantPayer, reste;
+        private int valide=0,solde=0;
+        private string intitule;
+        private FactureModel factureModel;
         public EditInvoice(int invoiceId, Invoice parent,Panel panel, string customerID,double total_price)
         {
             InitializeComponent();
@@ -35,14 +39,19 @@ namespace InvoiceGenerator.UserForms
             customerModel = new CustomerModel();
             customer = customerModel.GetCustomer(customerID);
             this.total_price = total_price;
+            pnlChoice.Visible = false;
+            factureModel = new FactureModel();
+            lbOrderID.Text = invoiceId.ToString();
         }
         public EditInvoice()
         {
             InitializeComponent();
+            pnlChoice.Visible = false;
+            factureModel = new FactureModel();
         }
 
         private void EditInvoice_Load(object sender, EventArgs e)
-        {
+        {   
             var invoiceDetails = orderModel.GetOrderLines(invoiceId);
             if (dtgvOD.Rows.Count > 1)
             {
@@ -84,126 +93,88 @@ namespace InvoiceGenerator.UserForms
             var data = orderModel.GetOrderLines(invoiceId);
             Print_Invoice print_ = new Print_Invoice();
             print_.CreatePDF(data, customer, total_price);
+        }
 
+        private void ckValide_CheckedChanged(object sender, EventArgs e)
+        {
+            pnlChoice.Visible = ckValide.Checked ?  true :  false;
+            ckValide.Enabled = btnDeleteItem.Enabled = btnDelete.Enabled = ckValide.Checked ? false : true;
+        }
 
-
-            /*//Create new PDF document.
-            PdfDocument document = new PdfDocument();
-
-            //Add page settings.
-            document.PageSettings.Margins.All = 50;
-            document.PageSettings.Size = PdfPageSize.A4;
-            document.PageSettings.Orientation = PdfPageOrientation.Landscape;
-
-            //Add new page to the PDF document.
-            PdfPage page = document.Pages.Add();
-            PdfGraphics pdfGraphics = page.Graphics;
-
-            //Load the image from ressources
-            PdfBitmap image = new PdfBitmap(@"C:\Users\vngou\Documents\Application de stage\InvoiceGenerator\InvoiceGenerator\Images\logo.png");
-            RectangleF rect = new RectangleF(176, 0, 390, 130);
-            pdfGraphics.DrawImage(image, rect);
-
-            PdfBrush solidBush = new PdfSolidBrush(new PdfColor(126, 151, 173));
-            rect = new RectangleF(0, rect.Bottom + 90, page.GetClientSize().Width, 30);
-
-            //Draw the rectangle to place the heading in page
-            pdfGraphics.DrawRectangle(solidBush, rect);
-
-            //create a font for adding the heading in page
-            PdfFont headFont = new PdfStandardFont(PdfFontFamily.TimesRoman, 20);
-
-            //create a text element for adding the invoice number
-            PdfTextElement heading = new PdfTextElement("INVOICE N°:" + _customerID, headFont);
-            heading.Brush = PdfBrushes.White;
-
-            //Draw the heading in page
-            PdfLayoutResult result = heading.Draw(page, new PointF(10, rect.Top + 8));
-            string currentDate = "DATE " + DateTime.Now.ToString("dd/MM/yyyy");
-
-            //Measures the width of the text to place it in the correct location
-            SizeF textSize = headFont.MeasureString(currentDate);
-            PointF point = new PointF(pdfGraphics.ClientSize.Width - textSize.Width - 10, result.Bounds.Y);
-
-            //Draw the date by using the DrawString method
-            pdfGraphics.DrawString(currentDate, headFont, PdfBrushes.White, point);
-            PdfFont timesRoman = new PdfStandardFont(PdfFontFamily.TimesRoman, 10);
-
-            //create a text element to add the adress of the company and draw it in the page
-            PdfTextElement adress = new PdfTextElement("Address: " + "123, ABC Street, XYZ City, ABC Country", timesRoman);
-            adress.Brush = new PdfSolidBrush(new PdfColor(126, 155, 203));
-            result = adress.Draw(page, new PointF(10, result.Bounds.Bottom + 25));
-            PdfPen linePen = new PdfPen(new PdfColor(126, 155, 203), 2);
-            PointF startPoint = new PointF(0, result.Bounds.Bottom + 3);
-            PointF endPoint = new PointF(pdfGraphics.ClientSize.Width, result.Bounds.Bottom + 3);
-            pdfGraphics.DrawLine(linePen, startPoint, endPoint);
-
-            //creating the datasource for the table
-            DataTable dataTable = new DataTable();
-            var data = orderModel.GetOrderLines(invoiceId);
-
-
-            //Format data as currency
-            dataTable.Columns.Add("Product Name", typeof(string));
-            dataTable.Columns.Add("Prix Unitaire en Euro ", typeof(string));
-            dataTable.Columns.Add("Quantity", typeof(string));
-            //add item in data
-            data.ForEach(x => dataTable.Rows.Add( x.ProductId, x.UnitPrice.ToString("C"), x.Quantity));
-
-            //creating pdf grid
-            PdfGrid pdfGrid = new PdfGrid();
-
-            //adds the data source
-            pdfGrid.DataSource = dataTable;
-
-
-            //create the grid cells style
-            PdfGridCellStyle cellStyle = new PdfGridCellStyle();
-            cellStyle.Borders.All = PdfPens.White;
-            PdfGridRow headerRow = pdfGrid.Headers[0];
-
-            //creating the header style
-            PdfGridCellStyle headerStyle = new PdfGridCellStyle();
-            headerStyle.Borders.All = new PdfPen(new PdfColor(126, 152, 173));
-            headerStyle.BackgroundBrush = new PdfSolidBrush(new PdfColor(126, 152, 173));
-            headerStyle.TextBrush = new PdfSolidBrush(new PdfColor(255, 255, 255));
-            headerStyle.Font = new PdfStandardFont(PdfFontFamily.TimesRoman, 14f, PdfFontStyle.Regular);
-
-            //Adds cells customization
-            for (int i = 0; i < headerRow.Cells.Count; i++)
+        private void ckAccompte_CheckedChanged(object sender, EventArgs e)
+        {
+            if (ckAccompte.Checked)
             {
-                headerRow.Cells[i].StringFormat = new PdfStringFormat(PdfTextAlignment.Left, PdfVerticalAlignment.Middle);
+                btnAdd.Text = "Save Bill";
+                montantPayer =  total_price / 2;
+                reste = total_price - montantPayer;
+                lbPayer.Text = montantPayer + " €";
+                lbReste.Text = reste + " €";
+                valide = 1;
+                intitule = "Accompte";
             }
+            else
+            {
+                btnAdd.Text = "Add Item";
+                montantPayer = 0;
+                reste = total_price;
+                lbPayer.Text = montantPayer + " €";
+                lbReste.Text = reste + " €";
+                valide = 0;
+                intitule = "";
+            }
+        }
 
-            //apply the style to the header cells
-            headerRow.ApplyStyle(headerStyle);
-            cellStyle.Borders.Bottom = new PdfPen(new PdfColor(217, 217, 217), 2f);
-            cellStyle.Font = new PdfStandardFont(PdfFontFamily.TimesRoman, 12f);
-            cellStyle.TextBrush = new PdfSolidBrush(new PdfColor(131, 130, 136));
+        private void ckSolde_CheckedChanged(object sender, EventArgs e)
+        {
+            if (ckSolde.Checked)
+            {
+                ckAccompte.Checked = true;
+                ckAccompte.Enabled = false;
 
-            //create layout format for the grid
-            PdfGridLayoutFormat layoutFormat = new PdfGridLayoutFormat();
-            layoutFormat.Layout = PdfLayoutType.Paginate;
-
-            //Draw the grid in the page
-            PdfGridLayoutResult layoutResult = pdfGrid.Draw(page, new RectangleF(new PointF(0, result.Bounds.Bottom + 40), new SizeF(pdfGraphics.ClientSize.Width, pdfGraphics.ClientSize.Height - 100)), layoutFormat);
-
-
-
-            //save pdf document
-
-            document.Save("Invoice" + invoiceId + ".pdf");
-            MessageBox.Show("Invoice" + invoiceId + ".pdf");
-            //close the document
-            document.Close(true);
-            */
+                montantPayer = total_price;
+                reste = 0;
+                lbPayer.Text = montantPayer + " €";
+                lbReste.Text = reste + " €";
+                solde = 1;
+                intitule = "Solde";
+            }
+            else
+            {
+                ckAccompte.Enabled = true;
+                solde = 0;
+                montantPayer = total_price / 2;
+                reste = total_price - montantPayer;
+                lbPayer.Text = montantPayer + " €";
+                lbReste.Text = reste + " €";
+                intitule = "Accompte";
+            }
         }
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            Order order = orderModel.GetOrder(invoiceId);
-            OrderDetailForm editInvoice = new OrderDetailForm(invoiceId, order);
-            editInvoice.ShowDialog();
+            if (btnAdd.Text== "Add  Item")
+            {
+                Order order = orderModel.GetOrder(invoiceId);
+                OrderDetailForm editInvoice = new OrderDetailForm(invoiceId, order);
+                editInvoice.ShowDialog();
+            }
+            else
+            {
+                Order order = orderModel.GetOrder(invoiceId);
+                order.Validate = valide;
+                order.Sell = solde;
+                Facture facture = new Facture();
+                facture.OrderId = invoiceId;
+                facture.Amout = montantPayer;
+                facture.Remain = reste;
+                facture.Date = DateTime.Now;
+                facture.TotalDue = total_price;
+                facture.Intitule = intitule+" "+order.Customer.CompanyName;
+                factureModel.AddFacture(facture);
+                orderModel.UpdateOrder(invoiceId,order);
+
+            }
         }
     }
 }

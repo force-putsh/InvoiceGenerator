@@ -114,14 +114,11 @@ namespace InvoiceGenerator.Models
             return order;
         }
 
-        public async Task<Order> UpdateOrder(Order order)
+        //update order and return updated order
+        public void UpdateOrder(int id,Order order)
         {
-            HttpResponseMessage response = await httpClient.PutAsJsonAsync("Orders/" + order.OrderId, order);
-            if (response.IsSuccessStatusCode)
-            {
-                order = await response.Content.ReadAsAsync<Order>();
-            }
-            return order;
+
+            var response = httpClient.PutAsJsonAsync("Orders/" + id, order).Result;
         }
 
         public async Task<Order> DeleteOrder(int id)

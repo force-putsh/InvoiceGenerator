@@ -8,9 +8,11 @@ namespace InvoiceApi.Models
         public int FacturId { get; set; }
         public int OrderId { get; set; }
         public string? Intitule { get; set; }
-        public decimal? Amout { get; set; }
-        public DateTime? DueDate { get; set; }
+        public double? Amout { get; set; }
+        public DateTime? Date { get; set; }
+        public double? TotalDue { get; set; }
+        public double? Remain { get; set; }
 
-        public virtual Order Order { get; set; } = null!;
+        public virtual Order? Order { get; set; } = null!;
     }
 }

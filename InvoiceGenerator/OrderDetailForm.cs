@@ -23,6 +23,7 @@ namespace InvoiceGenerator
             _orderID = orderID;
             orderDetailModel = new OrderDetailModel();
             this._order = order;
+            lbOrderID.Text = orderID.ToString();
         }
 
         private void btnAdd_Click(object sender, EventArgs e)
@@ -30,7 +31,7 @@ namespace InvoiceGenerator
             OrderDetail orderDetail = new OrderDetail();
             orderDetail.OrderId = _orderID;
             orderDetail.Intitule = tbIntitule.Text;
-            orderDetail.UnitPrice = Convert.ToDecimal(tbAmount.Text);
+            orderDetail.UnitPrice = Convert.ToDouble(tbAmount.Text);
             orderDetail.Quantity = short.Parse(tbQuantity.Text);
             orderDetailModel.AddOrderDetailAsync(orderDetail);
             MessageBox.Show("Order detail OK");
@@ -52,6 +53,11 @@ namespace InvoiceGenerator
             {
                 e.Handled = true;
             }
+        }
+
+        private void btnCancel_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

@@ -20,7 +20,7 @@ namespace InvoiceGenerator.Models
         //Get Factures by OrderId
         public  IList<Facture> GetFacturesByOrderId(int orderId)
         {
-            var response = httpClient.GetStringAsync("facture/" + orderId);
+            var response = httpClient.GetStringAsync("Facture/" + orderId);
             var factures = JsonConvert.DeserializeObject<IList<Facture>>(response.Result);
             return factures;
         }
@@ -28,7 +28,7 @@ namespace InvoiceGenerator.Models
         //Get Facture by Id
         public Facture GetFactureById(int id)
         {
-            var response = httpClient.GetStringAsync("facture/" + id);
+            var response = httpClient.GetStringAsync("Facture/" + id);
             var facture = JsonConvert.DeserializeObject<Facture>(response.Result);
             return facture;
         }
@@ -36,7 +36,7 @@ namespace InvoiceGenerator.Models
         //Add Facture
         public async Task<Facture>AddFacture(Facture facture)
         {
-            HttpResponseMessage response = await httpClient.PostAsJsonAsync("Orders", facture);
+            HttpResponseMessage response = await httpClient.PostAsJsonAsync("Facture", facture);
             if (response.IsSuccessStatusCode)
             {
                 facture = await response.Content.ReadAsAsync<Facture>();
@@ -47,7 +47,7 @@ namespace InvoiceGenerator.Models
         //Update Facture
         public async Task<Facture> UpdateFacture(Facture facture)
         {
-            HttpResponseMessage response = await httpClient.PutAsJsonAsync("Orders/" + facture.Intitule, facture);
+            HttpResponseMessage response = await httpClient.PutAsJsonAsync("Facture/" + facture.Intitule, facture);
             if (response.IsSuccessStatusCode)
             {
                 facture = await response.Content.ReadAsAsync<Facture>();

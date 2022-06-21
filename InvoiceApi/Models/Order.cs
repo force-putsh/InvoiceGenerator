@@ -16,10 +16,12 @@ namespace InvoiceApi.Models
         public int? EmployeeId { get; set; }
         public DateTime OrderDate { get; set; }
         public DateTime RequiredDate { get; set; }
+        public int? Validate { get; set; }
+        public int? Sell { get; set; }
 
         public virtual Customer? Customer { get; set; }
         public virtual Employee? Employee { get; set; }
-        public virtual ICollection<Facture> Factures { get; set; }
-        public virtual ICollection<OrderDetail> OrderDetails { get; set; }
+        public virtual ICollection<Facture>? Factures { get; set; }
+        public virtual ICollection<OrderDetail>? OrderDetails { get; set; }
     }
 }

@@ -100,21 +100,27 @@
             // 
             // button3
             // 
+            this.button3.BackColor = System.Drawing.Color.RoyalBlue;
+            this.button3.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.button3.ForeColor = System.Drawing.Color.White;
             this.button3.Location = new System.Drawing.Point(315, 34);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(200, 73);
             this.button3.TabIndex = 2;
-            this.button3.Text = "button3";
-            this.button3.UseVisualStyleBackColor = true;
+            this.button3.Text = "Rechercher";
+            this.button3.UseVisualStyleBackColor = false;
             // 
             // btnNewOrder
             // 
+            this.btnNewOrder.BackColor = System.Drawing.Color.RoyalBlue;
+            this.btnNewOrder.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.btnNewOrder.ForeColor = System.Drawing.Color.White;
             this.btnNewOrder.Location = new System.Drawing.Point(81, 34);
             this.btnNewOrder.Name = "btnNewOrder";
             this.btnNewOrder.Size = new System.Drawing.Size(208, 73);
             this.btnNewOrder.TabIndex = 0;
             this.btnNewOrder.Text = "New Order";
-            this.btnNewOrder.UseVisualStyleBackColor = true;
+            this.btnNewOrder.UseVisualStyleBackColor = false;
             this.btnNewOrder.Click += new System.EventHandler(this.btnNewOrder_Click);
             // 
             // panel2

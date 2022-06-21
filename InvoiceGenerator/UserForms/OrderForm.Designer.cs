@@ -105,22 +105,28 @@
             // 
             // btnValidate
             // 
+            this.btnValidate.BackColor = System.Drawing.Color.RoyalBlue;
+            this.btnValidate.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.btnValidate.ForeColor = System.Drawing.Color.White;
             this.btnValidate.Location = new System.Drawing.Point(61, 284);
             this.btnValidate.Name = "btnValidate";
             this.btnValidate.Size = new System.Drawing.Size(161, 50);
             this.btnValidate.TabIndex = 5;
             this.btnValidate.Text = "Valider";
-            this.btnValidate.UseVisualStyleBackColor = true;
+            this.btnValidate.UseVisualStyleBackColor = false;
             this.btnValidate.Click += new System.EventHandler(this.btnValidate_Click);
             // 
             // btnCancel
             // 
+            this.btnCancel.BackColor = System.Drawing.Color.RoyalBlue;
+            this.btnCancel.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.btnCancel.ForeColor = System.Drawing.Color.White;
             this.btnCancel.Location = new System.Drawing.Point(241, 284);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(161, 50);
             this.btnCancel.TabIndex = 6;
             this.btnCancel.Text = "Annuler";
-            this.btnCancel.UseVisualStyleBackColor = true;
+            this.btnCancel.UseVisualStyleBackColor = false;
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
             // autoLabel2
@@ -148,8 +154,10 @@
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "OrderForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "OrderForm";
             this.ResumeLayout(false);
             this.PerformLayout();

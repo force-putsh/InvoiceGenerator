@@ -29,8 +29,9 @@
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
-            this.progressBar = new Syncfusion.Windows.Forms.Tools.ProgressBarAdv();
+            this.button1 = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.progressBar = new Syncfusion.Windows.Forms.Tools.ProgressBarAdv();
             this.btnSearch = new System.Windows.Forms.Button();
             this.txtFilter = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
@@ -38,10 +39,9 @@
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.panel3 = new System.Windows.Forms.Panel();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
-            this.button1 = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.progressBar)).BeginInit();
             this.panel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.progressBar)).BeginInit();
             this.panel3.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -54,6 +54,30 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1447, 100);
             this.panel1.TabIndex = 0;
+            // 
+            // button1
+            // 
+            this.button1.BackColor = System.Drawing.Color.RoyalBlue;
+            this.button1.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.button1.ForeColor = System.Drawing.Color.White;
+            this.button1.Location = new System.Drawing.Point(67, 23);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(281, 55);
+            this.button1.TabIndex = 1;
+            this.button1.Text = "Ajouter";
+            this.button1.UseVisualStyleBackColor = false;
+            // 
+            // panel2
+            // 
+            this.panel2.Controls.Add(this.progressBar);
+            this.panel2.Controls.Add(this.btnSearch);
+            this.panel2.Controls.Add(this.txtFilter);
+            this.panel2.Controls.Add(this.label1);
+            this.panel2.Dock = System.Windows.Forms.DockStyle.Right;
+            this.panel2.Location = new System.Drawing.Point(679, 0);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(768, 100);
+            this.panel2.TabIndex = 0;
             // 
             // progressBar
             // 
@@ -80,26 +104,17 @@
             this.progressBar.Value = 0;
             this.progressBar.WaitingGradientWidth = 400;
             // 
-            // panel2
-            // 
-            this.panel2.Controls.Add(this.progressBar);
-            this.panel2.Controls.Add(this.btnSearch);
-            this.panel2.Controls.Add(this.txtFilter);
-            this.panel2.Controls.Add(this.label1);
-            this.panel2.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panel2.Location = new System.Drawing.Point(679, 0);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(768, 100);
-            this.panel2.TabIndex = 0;
-            // 
             // btnSearch
             // 
+            this.btnSearch.BackColor = System.Drawing.Color.RoyalBlue;
+            this.btnSearch.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.btnSearch.ForeColor = System.Drawing.Color.White;
             this.btnSearch.Location = new System.Drawing.Point(245, 58);
             this.btnSearch.Name = "btnSearch";
             this.btnSearch.Size = new System.Drawing.Size(174, 36);
             this.btnSearch.TabIndex = 4;
             this.btnSearch.Text = "Search";
-            this.btnSearch.UseVisualStyleBackColor = true;
+            this.btnSearch.UseVisualStyleBackColor = false;
             this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
             // 
             // txtFilter
@@ -154,15 +169,6 @@
             this.flowLayoutPanel1.Size = new System.Drawing.Size(1447, 754);
             this.flowLayoutPanel1.TabIndex = 0;
             // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(67, 23);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(281, 55);
-            this.button1.TabIndex = 1;
-            this.button1.Text = "Ajouter";
-            this.button1.UseVisualStyleBackColor = true;
-            // 
             // CustomerUF
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 19F);
@@ -175,9 +181,9 @@
             this.Size = new System.Drawing.Size(1447, 854);
             this.Load += new System.EventHandler(this.CustomerUF_Load);
             this.panel1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.progressBar)).EndInit();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.progressBar)).EndInit();
             this.panel3.ResumeLayout(false);
             this.ResumeLayout(false);
 

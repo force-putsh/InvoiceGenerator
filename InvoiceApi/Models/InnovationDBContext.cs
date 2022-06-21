@@ -106,9 +106,13 @@ namespace InvoiceApi.Models
 
                 entity.Property(e => e.Amout).HasColumnType("decimal(18, 0)");
 
-                entity.Property(e => e.DueDate).HasColumnType("date");
+                entity.Property(e => e.Date).HasColumnType("date");
 
                 entity.Property(e => e.Intitule).HasMaxLength(250);
+
+                entity.Property(e => e.Remain).HasColumnType("money");
+
+                entity.Property(e => e.TotalDue).HasColumnType("money");
 
                 entity.HasOne(d => d.Order)
                     .WithMany(p => p.Factures)
@@ -131,6 +135,10 @@ namespace InvoiceApi.Models
                 entity.Property(e => e.OrderDate).HasColumnType("datetime");
 
                 entity.Property(e => e.RequiredDate).HasColumnType("datetime");
+
+                entity.Property(e => e.Sell).HasDefaultValueSql("((0))");
+
+                entity.Property(e => e.Validate).HasDefaultValueSql("((0))");
 
                 entity.HasOne(d => d.Customer)
                     .WithMany(p => p.Orders)
